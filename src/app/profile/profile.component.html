@@ -1,0 +1,139 @@
+<div class="homepage profile"  >
+<section id="loading-container" class="common-all shadows borderRadius mt-5 mb-5" *ngIf="loading">
+  <div class="container">
+      <div class="table-responsive center-btn">
+          <img class="loading-gif-img" src="assets/images/loading.svg"/>
+      </div>
+  </div>
+</section>
+<section class="ProfilePage borderRadius shadows mt-3 py-5" *ngIf="!loading">
+  <h2 class="heading-h2 text-center">
+      <span class="dot"></span>
+      <span class="font-weight-bold">Profile</span>
+      <span class="dot"></span>
+  </h2>
+  <div class="container">
+      <div class="row">
+          <div class="col-md-3 mb-3">
+              <div class="bgdrop borderRadius shadows">
+                  <div class="Account-name">
+                      <h2>
+                          Account
+                      </h2>
+                      <p>UserName:&nbsp;<b>{{userName}}</b></p>
+                  </div>
+                  <ul class="link-add">
+                      <li class="active pointer"  [routerLink]="['/profile']" ><a>Profile</a></li>
+                      <li class="pointer" [routerLink]="['/address']"><a>Address</a></li>
+                      <li class="pointer" [routerLink]="['/orders']"><a>Orders</a></li>
+                      <li class="pointer"  (click)="logout()"><a>Logout</a></li>
+                  </ul>
+              </div>
+          </div>
+          <div class="col-md-9">
+              <div class="profile-txt borderRadius shadows">
+                  <div class="nme-btn">
+                      <h2>Profile details</h2>
+                      </div>
+                      <div class="table-responsive">
+
+                  <table class="table table table-bordered">
+                      <tbody>
+                         <tr>
+                              <td>Full Name </td>
+                              <td>
+                                  <span *ngIf="customerDetails[0].customer_name !== 'User'">{{customerDetails[0].customer_name}}</span>
+                                  <span *ngIf="customerDetails[0].customer_name === 'User'">-- Not Updated --</span>
+                              </td>
+                         </tr>
+                         <tr>
+                            <td>Mobile Number</td>
+                            <td>{{customerDetails[0].customer_mobile}}</td>
+                         </tr>
+                         <tr>
+                            <td>Email ID</td>
+                            <td>
+                              <span *ngIf="customerDetails[0].customer_email !== null">{{customerDetails[0].customer_email}}</span>
+                              <span *ngIf="customerDetails[0].customer_email === null">-- Not Updated --</span>
+                            </td>
+                         </tr>
+                         <!-- <tr>
+                            <td>Gender</td>
+                            <td>
+                              <span *ngIf="customerDetails[0].customer_gender !== null">{{customerDetails[0].customer_gender | titlecase}}</span>
+                              <span *ngIf="customerDetails[0].customer_gender === null">-- Not Updated --</span>
+                            </td>
+                         </tr> -->
+                      </tbody>
+                   </table>
+                  </div>
+                   <div class="bbtn text-center">
+                       <button class="chronoEButton active big-button" data-toggle="modal" data-target="#profEdit">Edit Profile</button>
+                   </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+<!-- profile modal -->
+<div class="modal fade prof p-2 p-xl-0 p-lg-0 p-md-0" style="z-index: 1000000;" id="profEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Edit Profile</h5>
+        <button type="button" id="close-popup" class="close shadows" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form [formGroup]="profileForm" (ngSubmit)="editCustomerDetails()">
+              <div class="form-layer">
+                  <div class="form-set shadows">
+                      <p style="color: #555;">Customer Details</p>
+                      <div class="row">
+                          <div class="col-md-12">
+                              <div class="form-group">
+                                  <input autocomplete="off" type="text" class="form-control" name="name" placeholder="Name*" formControlName="name">
+                              </div>
+                          </div>
+                          <div class="col-md-12">
+                              <div class="form-group">
+                                  <input autocomplete="off" type="text" class="form-control" name="email" placeholder="Email*" formControlName="email">
+                              </div>
+                          </div>
+                          <div class="col-md-12">
+                              <div class="form-group">
+                                  <input autocomplete="off" type="text" class="form-control" placeholder="Mobile*" formControlName="mobile" maxlength="10" >
+                              </div>
+                          </div>
+                          <!-- <div class="col-md-12" style="color: #555;">
+                              Gender
+                          </div>
+                          <div class="col-md-3 col-6 d-flex justify-content-center">
+                              <div class="rdio rdio-primary radio-inline">
+                                  <input name="radio" value="male" id="radio1" type="radio" (click)="updateGender('male')" [checked]="customerGender === 'male'">
+                                <label for="radio1">Male</label>
+                              </div>
+                          </div>
+                          <div class="col-md-3 col-6 d-flex justify-content-center">
+                              <div class="rdio rdio-primary radio-inline">
+                                  <input name="radio" value="female" id="radio2" type="radio" (click)="updateGender('female')" [checked]="customerGender === 'female'">
+                                <label for="radio2">Female</label>
+                              </div>
+                          </div> -->
+                      </div>
+                  </div>
+              </div>
+              <div class=" b-white row d-flex mb-5">
+                <div class="col-6 d-flex justify-content-end"> <button type="button" class="chronoEButton" data-dismiss="modal" (click)="closePopUp()">Cancel</button></div>
+                <div class="col-6">  <button type="submit" class="chronoEButton" (click)="editCustomerDetails()">Update</button></div>
+
+
+              </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- profile modal -->
+</div>

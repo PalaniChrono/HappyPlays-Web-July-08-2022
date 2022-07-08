@@ -1,0 +1,82 @@
+<div class="homepage" style="background-image: url(assets/images/BG1.png);">
+  <div class="container">
+    <div class="row d-flex align-items-center" *ngIf="tagproductdetails.length !==0" >
+      <div class="col-12 d-flex align-items-center justify-content-center mb-5 blog-top mobile-view-tagname">
+     <img  src="assets/images/Icon8.png" alt="" class="lookinto-star">&nbsp;&nbsp;&nbsp;
+     <!-- <h3 class="play-type">Products(<span style="color:#f27360 ;">#{{tagname}}</span>)</h3> -->
+
+     <h3 class="play-type">Products(<span style="color:#f27360 ;">#{{tagproduct}}</span>)</h3>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="container-fluid product-row-3">
+    <div class="row creative-blog-corner">
+      <div class="col-12 col-md-3 col-lg-3 col-xl-3 mx-col-5 mb-5 mob-card-padding" *ngFor="let product of tagproductdetails;let i=index;">
+        <a [routerLink]="['/product', product.product_slug]" routerLinkActive="router-link-active" (click)="pagetop()">
+        <div class="card creative-blog-card" style="background-color: #e9e9e9;cursor: pointer;">
+          <img class="card-img-top p-4 blog-creative-product-image" [src]=convertImage(product.first_image[0].product_image) loading="lazy" alt="{{product.product_name}}">
+          <div class="card-body pt-0">
+            <h5 class="card-title imaginative-play">{{product.product_name | slice:0:25}}<span *ngIf="product.product_name.length>15">.....</span></h5>
+            <div class="row">
+              <div class="col">
+                <p class="card-text imaginative-play-product-offer-price"><i class="fa fa-rupee-sign"></i>{{product.price[0].discount_price}}</p>
+              </div>
+              <div class="col">
+                <p class="card-text imaginative-play-product-offer-price striked-price" *ngIf="product.price[0].price != product.price[0].discount_price"><i class="fa fa-rupee-sign"></i> {{product.price[0].price}}</p>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="d-none col-4 text-center">
+                <img src="assets/images/Icon10.png" alt="">
+              </div>
+            </div>
+
+           </div>
+        </div>
+      </a>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="container">
+    <div class="row d-flex align-items-center" *ngIf="Blogtagdetails.length !==0">
+      <div class="col-12 d-flex align-items-center justify-content-center mb-5 blog-top mobile-view-tagname">
+     <img  src="assets/images/Icon8.png" alt="" class="lookinto-star">&nbsp;&nbsp;&nbsp;
+     <!-- <h3 class="play-type">Blogs(<span style="color:#f27360 ;">#{{tagname}}</span>)</h3> -->
+     <h3 class="play-type">Blogs(<span style="color:#f27360 ;">#{{Blogtagproduct}}</span>)</h3>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="container-fluid product-row-3">
+
+    <div class="row creative-blog-corner">
+      <!-- <h3 class="play-type mobil-adjustment-mb text-center" >Blogs(#{{tagname}}) </h3> -->
+
+      <div class="col-12 col-md-3 col-lg-3 col-xl-3 mx-col-5 mb-5 mob-card-padding" *ngFor="let product of Blogtagdetails;let i=index;">
+        <a [routerLink]="['/blog-details', product.id]" routerLinkActive="router-link-active" (click)="pagetop()">
+        <div class="card creative-blog-card" style="background-color: #e9e9e9;cursor: pointer;">
+          <img class="card-img-top p-4 blog-creative-product-image" [src]=convertImage(product.blog_details_banner) loading="lazy" alt="{{product.blog_heading}}">
+          <div class="card-body pt-0">
+            <h5 class="card-title imaginative-play">{{product.blog_heading | slice:0:25}}<span *ngIf="product.blog_heading.length>15">.....</span></h5>
+
+            <div class="row">
+              <div class="d-none col-4 text-center">
+                <img src="assets/images/Icon10.png" alt="">
+              </div>
+            </div>
+
+           </div>
+        </div>
+      </a>
+      </div>
+
+    </div>
+
+  </div>
+</div>

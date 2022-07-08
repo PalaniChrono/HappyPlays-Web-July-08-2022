@@ -1,0 +1,104 @@
+<div class="homepage" >
+<section id="loading-container" class="common-all shadows borderRadius mt-5 mb-5" *ngIf="loading">
+    <div class="container">
+        <div class="table-responsive center-btn">
+            <img class="loading-gif-img" src="assets/images/default/loading.svg"/>
+        </div>
+    </div>
+</section>
+<section class="borderRadius shadows mt-3 py-5 d-none">
+    <h2 class="heading-h2 text-center">
+        <span class="dot"></span>
+        <span class="font-weight-bold">Your Orders</span>
+        <span class="dot"></span>
+    </h2>
+    <div class="container">
+        <div class="table-responsive" *ngFor="let order of orderList.slice(0,3)">
+            <table class="table table-image shadows">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            OrderId : {{order.order_id}}
+                        </th>
+                        <th>Ordered DateTime : {{order.created_at}}</th>
+                        <th>Order Total : ₹ {{order.order_overall_totall}}</th>
+                        <th>Payment Method : {{order.payment_mode}}</th>
+                        <th>
+                            Delivery On: {{order.expected_delivery}}
+                        </th>
+                    </tr>
+                </thead>
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Image</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col" style="text-align: right;">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of order.ordered_products">
+                  <td class="w10">
+                    <img src="{{product.product_details[0].images[0].product_image}}" alt="image">
+                  </td>
+                  <td>{{product.product_details[0].product_name}} - {{product.size.size_name}}</td>
+                  <td>₹ {{product.product_details[0].product_discount_price}}</td>
+                  <td>{{product.product_quantity}}</td>
+                  <td style="text-align: right;">₹ {{product.product_total}}</td>
+                </tr>
+                <tr>
+                    <td colspan="6" style="text-align: right;">Order Total : ₹ {{order.order_overall_totall}}</td>
+                </tr>
+              </tbody>
+              <thead class="thead-red" *ngIf="order.ordered_address">
+                    <tr>
+                        <th colspan="6">
+                            Delivery Address : {{order.ordered_address.address_name}} - ({{order.ordered_address.address_type}}), {{order.ordered_address.address_details}}, {{order.ordered_address.address_locality_town}}, {{order.ordered_address.address_city_district}}, {{order.ordered_address.address_state}} - {{order.ordered_address.address_pincode}}
+                        </th>
+                    </tr>
+              </thead>
+            </table>
+        </div>
+        <div class="table-responsive center-btn" *ngIf="!orderList.length">
+            <img src="assets/images/default/no-orders.png"/>
+            <button type="button" class="chronoEButton big-button" (click)="popUpClose()" [routerLink]="['/']">Continue Shopping</button>
+        </div>
+    </div>
+</section>
+
+<!-- New Order page -->
+<section class="borderRadius shadows mt-3 py-5"  *ngIf="!loading">
+    <h2 class="heading-h2 text-center">
+        <span class="dot"></span>
+        <span class="font-weight-bold">My Orders</span>
+        <span class="dot"></span>
+    </h2>
+    <div class="container">
+        <div class="table-responsive orders shadows bg-white borderRadius">
+            <table class="table order-table">
+                <thead>
+                    <tr>
+                        <th>ORDER</th>
+                        <th>DATE</th>
+                        <th>STATUS</th>
+                        <th>TOTAL</th>
+                        <th>ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let order of orderList">
+                        <td data-label="ORDER"><a><span class="bold-fon">MHP{{order.order_id}}</span></a></td>
+                        <td data-label="DATE">{{order.order_submitted_at}}</td>
+                        <td data-label="STATUS">{{order.order_status}}</td>
+                        <td data-label="TOTAL"><span class="bold-fon"><i class="fa fa-inr"></i>Rs.{{order.order_overall_totall}}</span> for {{order.ordered_products.length}} items</td>
+                        <td data-label="ACTIONS"><a><button class="chronoEButton active" (click)="pagetop()" [routerLink]="['/view-order/', order.order_id]">View</button></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+<!-- New Order page -->
+</div>

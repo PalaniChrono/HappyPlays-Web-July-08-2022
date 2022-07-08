@@ -1,0 +1,42 @@
+section.search-component {
+  margin: 3em 0;
+}
+.form-search-comp {
+  width: 60%;
+  margin: 1em auto;
+}
+.form-search-comp input {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid;
+  border-radius: 0;
+  /* outline: none !important; */
+}
+.closeBtn {
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-top: 2em;
+  margin-right: 50px;
+}
+.shadows {
+  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);
+}
+.closeBtn button {
+  background: none;
+  border: 0;
+  font-size: 30px;
+  color: #f27360;
+}
+.form-search-comp .input-group-append button i {
+  color: #f27360;
+}
+.form-control:focus {
+  border-color: white !important;
+  box-shadow: white !important;
+}

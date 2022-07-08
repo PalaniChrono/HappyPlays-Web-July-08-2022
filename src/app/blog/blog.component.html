@@ -1,0 +1,31 @@
+<div class="homepage" style="background-image: url(assets/images/BG1.png);">
+  <div class="container">
+    <div class="row d-flex align-items-center" >
+      <div class="col-12 d-flex align-items-center justify-content-center mb-5 blog-top">
+     <img  src="assets/images/Icon8.png" alt="" class="lookinto-star">&nbsp;&nbsp;&nbsp;
+     <h3 class="play-type ">Blog(Creative Corner)</h3>
+
+      </div>
+
+    </div>
+  </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 col-lg-3 col-xl-3 col-6" style="cursor: pointer;" *ngFor="let blogs of bloginfo;let i=index">
+      <div class="card border-0 blog-prduct-card" [routerLink]="['/blog-details',blogs.id]" routerLinkActive="router-link-active">
+        <img class="card-img-top blog-prduct-card-image p-3 text-left" src={{blogs.blog_details_banner}} alt="Card image cap">
+        <div class="card-body ">
+          <h5 class="card-title blog-prduct-card-title blog-date text-center mt-2 mb-3">{{blogs.created_at |date:'mediumDate'}}</h5>
+          <h4 class="card-text blog-prduct-card-text mb-3">{{blogs.blog_heading}}</h4>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+</div>
+

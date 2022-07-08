@@ -1,0 +1,118 @@
+<div class="homepage" >
+  <div class="container ">
+      <div class="row d-flex align-items-center">
+          <div class="col-12 d-flex align-items-center justify-content-center product-row">
+              <img src="assets/images/Icon8.png" alt="" class="lookinto-star">&nbsp;&nbsp;&nbsp;
+              <h3 class="play-type mobile-cart-font">Cart</h3>
+          </div>
+      </div>
+  </div>
+  <div class="container mt-xl-5 mt-lg-5 mt-md-5 mt-4" >
+      <div class="row align-items-center mobile-cart-adjustment">
+          <div class="col-12 col-xl-6 col-lg-6 col-md-6   text-xl-left">
+              <div class="totalPriceLabel">
+                  <h5 class="prodduct-actual-price" style=" color: #37b3aa; ">Cart Total &nbsp;&nbsp;&nbsp;<i class="fa fa-rupee-sign">{{cartTotal | number : '1.2-2'}}</i></h5>
+              </div>
+
+          </div>
+
+          <div class="col-12 col-xl-6 col-lg-6 col-md-6 mb-4  text-xl-right text-center">
+                <button class="add-to-cart-btn w-xl-50 w-md-50 w-lg-50 w-75" [routerLink]="['/checkout']"> Continue</button>
+
+
+        </div>
+      </div>
+  </div>
+  <div class="container cart-card mb-5 " *ngFor="let cart of cartDetails">
+    <div class="row mobileremove">
+      <div class="col-12">
+        <img src="assets/images/mobremove1.png" alt=""  (click)="removeFromCart(cart.cart_id)" class="mobileremove cart  mt-3">
+
+      </div>
+    </div>
+      <div class="row p-4 position-relative w-110">
+          <div class="col-lg-3 col-md-3 col-xl-3 col-12 cart-product-image  d-flex justify-content-center align-items-center">
+              <img src="{{cart.products.one_image.product_image}}" class="w-50 image-border" alt="">
+
+          </div>
+          <div class="col-lg-5 col-md-5 col-xl-5 col-12 center d-flex flex-column justify-content-center">
+               <div class="row">
+                <div class="col-12 cart-product-name">
+                    <h6 class="text-left" style="font: 18px !important;">{{cart.products.product_name}}</h6>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 for-who" >
+                    <span *ngIf="cart.size.size_name != '0 gm'"><label  for="Size" class="cart-weight cart-details-font">WEIGHT</label>&nbsp;&nbsp;&nbsp;{{cart.size.size_name == '0 gm' ? 'NIL' : cart.size.size_name}}</span>
+                </div>
+            </div>
+            <div class="row mt-xl-3" *ngIf="cart.products.color[0].itemName != 'Default'">
+                <div class="col-12 for-who mobile d-inline-flex justify-content-left">
+                    <h6 style="text-align: left;margin-top: auto ;margin-bottom: auto ;" class="cart-details-font">Color </h6>&nbsp;&nbsp;&nbsp;
+                    <div class="d-flex pl-4" *ngFor="let color of cart.products.color">
+                        <button class="available-color" *ngIf="color.id == cart.product_color_id && color.itemName != 'Default'" [ngStyle]="{'backgroundColor':color.colorCode}"></button>
+                        <span *ngIf="color.itemName == 'Default'">NIL</span>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="row  mt-3">
+                <div class="col-12 text-center">
+                    <button class="remove-button  d-xl-block  d-lg-block d-md-block d-none" (click)="removeFromCart(cart.cart_id)">Remove &nbsp;&nbsp;&nbsp;<i class="fas fa-trash-alt"></i></button>
+                    <!-- <button class="remove-button" data-toggle="modal" data-target="#exampleModal">Remove &nbsp;&nbsp;&nbsp;<i class="fas fa-trash-alt"></i></button> -->
+                </div>
+            </div>
+
+          </div>
+          <div class="col-lg-1 col-md-1 col-xl-1 col-6 mt-lg-auto mt-xl-auto mt-md-auto mt-2 d-flex justify-content-center align-items-center product-cart-qty">
+            <span><button class="minus" (click)="minus(cart.product_quantity, cart.cart_id)"><i class="fa fa-minus" aria-hidden="true"></i></button></span>
+            <span>{{cart.product_quantity}}</span>
+            <span><button class="plus" (click)="plus(cart.product_quantity, cart.cart_id)"><i class="fa fa-plus" aria-hidden="true"></i></button></span>
+              <!-- <label for="qty" class="cart-weight">Qty</label>&nbsp;&nbsp;&nbsp;{{cart.product_quantity}} -->
+        </div>
+          <div class="col-lg-3 col-md-3 col-xl-3 col-12 center d-flex justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-center align-items-center">
+
+              <div class="row d-flex flex-xl-column flex-lg-column flex-md-column flex-column justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-center align-items-center ">
+                  <div class="col text-center mt-3">
+                    <div class="col-12 " style="font-size: 22px; font-weight: 700; text-align: center;">Price Details</div>
+                      <p class="card-text imaginative-play-product-offer-price text-center "><i class="fa fa-rupee-sign"></i> {{cart.product_discount_price}}</p>
+                  </div>
+                  <div class="col text-center" *ngIf="cart.product_price != cart.product_discount_price">
+                      <p class="card-text imaginative-play-product-actual-price text-center"><i class="fa fa-rupee-sign"></i> {{cart.product_price}} </p>
+                  </div>
+                  <div *ngIf="cart.product_price != cart.product_discount_price" class="col mt-xl-3 mt-lg-3 mt-0 " style="color: #f27360; font-size: 20px; font-weight: 900; font-family: 'Poppins', sans-serif;text-align: center !important;">{{cart.offer}}% Off</div>
+              </div>
+
+          </div>
+      </div>
+
+  <div class="modal d-none" [class.d-none]="!showmodal" [class.d-block]="showmodal" tabindex="-1" role="dialog" >
+    <!-- <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
+      <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content" style="background-image: linear-gradient(to right bottom, #ffffff, #f8ede6, #fcf0f7, #fee8ee, #ffe1e1); color: black; font-size: 20px;font-family: 'Poppins', sans-serif;">
+              <div class="modal-header">
+
+
+              </div>
+              <div class="modal-body text-center">
+                 Really Want To Remove From Cart <b><h4>"{{cart.products.product_name}}"</h4></b>
+
+                 <div class="row">
+                   <div class="col-6"> <button class="add-to-cart-btn w-75"   (click)="removeFromCart(cart.cart_id)">OK</button></div>
+                   <div class="col-6"> <button class="add-to-cart-btn w-75"  (click)="closepopup()"> Cancel</button></div>
+
+                   <!-- <div class="col-6"> <button class="add-to-cart-btn w-75"  data-dismiss="modal"> Cancel</button></div> -->
+
+
+                 </div>
+              </div>
+
+          </div>
+      </div>
+  </div>
+
+</div>
+</div>

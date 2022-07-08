@@ -1,0 +1,27 @@
+@media only screen and(max-width:480px){
+  .for-who h6{
+    margin: 0 auto !important;
+  }
+
+
+}
+.button.remove-button {
+  width: 35% !important;
+  height: 45px !important;
+}
+.cart-details-font{
+  color: gray !important;
+  font-size: 20px !important;
+}
+.product-cart-qty {
+  height: fit-content !important;
+  border-radius: 20px;
+  background: #80808045;
+  font-size: 20px !important;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+  margin: auto;
+}

@@ -1,0 +1,295 @@
+<div   class="desktop-sticky-header container-fluid" style="position: fixed; top: 0;z-index: 1000000; background-color: #37b3aa;" *ngIf="desktopstickyheader">
+  <div class="row">
+    <div class="col-12">
+      <div class="sticky-postion-div text-center" >
+   <h6>{{header}}</h6>
+</div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid  navigation-bar desktop-navbar">
+  <div class="row g-0">
+      <div class="col-12">
+          <nav class="navbar p-0 navbar-expand-lg navbar-light navbar-header">
+              <a class="navbar-brand" href="#"><img src="assets/images/bg-logo.png" alt=""></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent navigationbar-Content">
+                  <ul class="navbar-nav navbar-menus" id="navigation testing">
+                    <li class="nav-item active">
+                      <a class="nav-link"  routerLink="/">Home</a>
+                    </li>
+                    <li class="nav-item  dropdown navabar-dropdown disabled">
+                          <a class="nav-link dropdown-toggle disabled" href="#" id="navbarDropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
+                          <div class="dropdown-menu orders navbar-dropdown-menu disabled" aria-labelledby="navbarDropdown1"  >
+                              <a class="dropdown-item "  (click)="pagetop()" routerLink="/products/{{subMenu.sub_category_slug}}" *ngFor="let subMenu of submenus">{{subMenu.sub_category_name}}</a>
+                          </div>
+                      </li>
+
+                      <li class="nav-item active"  data-toggle="collapse" data-target="#collapseExample">
+                        <a class="nav-link mobile-li"  routerLink="blog"  (click)="pagetop()">Blog(Creative Corner)</a>
+                      
+
+                      </li>
+                      <li class="nav-item active">
+                        <a class="nav-link"  routerLink="aboutus" (click)="pagetop()">About US</a>
+                      </li>
+                      <li>
+                        <button class="btn my-2 my-sm-0 "  [routerLink]="['/search']"><img src="assets/images/Icon9.png " alt=" "></button>
+                      </li>
+                      <li  *ngIf="customerId != null" [routerLink]="['/profile']"  style="cursor: pointer;"><img src="assets/images/user.png "  *ngIf="customerId != null" [routerLink]="['/profile']"  style="width: 30px;cursor: pointer;"></li>
+                      <li  *ngIf="customerId != null"  style="cursor: pointer;"[routerLink]="['/cart']"><img src="assets/images/shopping-cart.png" *ngIf="customerId != null" style="width: 30px !important" [routerLink]="['/cart']" style="width: 30px;cursor: pointer;"><span class="badge bg-danger">{{cartQuantity}}</span></li>
+                      <li *ngIf="customerId == null"  data-toggle="modal" data-target="#exampleModalCenter"  style="cursor: pointer;"><img src="assets/images/user.png "  *ngIf="customerId == null"  data-toggle="modal" data-target="#exampleModalCenter"  style="width: 30px;cursor: pointer;"></li>
+                      <li style="cursor: pointer;" data-toggle="modal" data-target="#exampleModalCenter"  *ngIf="customerId == null"><img src="assets/images/shopping-cart.png" *ngIf="customerId == null" style="width: 30px !important" data-toggle="modal" data-target="#exampleModalCenter" style="width: 30px;cursor: pointer;"></li>
+                  </ul>
+
+              </div>
+          </nav>
+      </div>
+  </div>
+</div>
+
+<div class="demo-for-nav">
+  <div class="stick"><p class="sticker">{{header}}</p></div>
+  <nav class="navbar  navbar-expand-lg navbar-light bg-light  mobile-navbar " >
+      <a class="navbar-brand mobile-icon" href="# "><img src="assets/images/bg-logo.png " class="mobile-logo " alt=" "></a>
+      <div class="testing-area"   >
+        <span class="badge bg-danger">{{cartQuantity}}</span>
+        <li>
+            <img src="assets/images/Icon9.png " alt=" " style="width: 20px;" [routerLink]="['/search']">
+        </li>
+        <li class="mobile-icon" *ngIf="customerId != null"><img src="assets/images/user.png "  [routerLink]="['/profile']" style="width: 20px;cursor: pointer;"></li>
+        <li class="mobile-icon" *ngIf="customerId != null"><img src="assets/images/shopping-cart.png"  style="width: 20px !important" [routerLink]="['/cart']" style="width: 20px;cursor: pointer;"></li>
+        <li  class="mobile-icon" *ngIf="customerId == null"><img src="assets/images/user.png " data-toggle="modal" data-target="#exampleModalCenter" style="width: 20px;cursor: pointer;"></li>
+        <li class="mobile-icon" *ngIf="customerId == null"><img src="assets/images/shopping-cart.png"  style="width: 20px !important" data-toggle="modal" data-target="#exampleModalCenter" style="width: 20px;cursor: pointer;"></li>
+
+    </div>
+
+      <button class="navbar-toggler  mobile-rotation" type="button" data-toggle="collapse" data-target="#collapseExample" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+      <div class="collapse navbar-collapse  for-mob    mt-5" id="collapseExample">
+          <ul class="navbar-nav ">
+            <li class="nav-item active"  data-toggle="collapse" data-target="#collapseExample">
+              <a class="nav-link mobile-li"  routerLink="/">Home</a>
+            </li>
+            <li class="nav-item  dropdown navabar-dropdown disabled"  data-toggle="collapse" data-target="#collapseExample">
+              <a class="nav-link mobile-li dropdown-toggle " href="#" id="navbarDropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
+              <div class="dropdown-menu navbar-dropdown-menu disabled" aria-labelledby="navbarDropdown1"  >
+                  <a class="dropdown-item text-start"  (click)="pagetop()" routerLink="/products/{{subMenu.sub_category_slug}}" *ngFor="let subMenu of submenus">{{subMenu.sub_category_name}}</a>
+              </div>
+          </li>
+          <li class="nav-item active"  data-toggle="collapse" data-target="#collapseExample">
+            <a class="nav-link mobile-li"  routerLink="blog"  (click)="pagetop()">Blog(Creative Corner)</a>
+            <!-- <a class="nav-link mobile-li">Blog(Creative Corner)</a> -->
+          </li>
+
+          <li class="nav-item active"  data-toggle="collapse" data-target="#collapseExample">
+            <a class="nav-link mobile-li"  routerLink="aboutus" (click)="pagetop()">About US</a>
+          </li>
+
+          </ul>
+      </div>
+  </nav>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade  loginmodal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h5 class="modal-title" id="exampleModalLongTitle" style="color: #f27360;">Login With OTP</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #f27360;" >
+          <span aria-hidden="true" #closeBtn>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body d-flex justify-content-center" style="background-color: #fff7f2;border-radius: 9px;">
+        <!-- <form [formGroup]="otpForm" class="otp-form w-100">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <div class="sg-form mb-3 d-flex flex-column justify-content-center">
+                  <span class="input-text text-left">Mobile No</span>
+                  <input style="background-color: #fff7f2;" [(ngModel)]="phoneNumber" min="10" max="15" class="checkout-form form-control" type="number " required   name="phoneNumber" placeholder="Mobile Number " />
+              </div>
+
+              <div class="sg-form mb-3 d-flex flex-column justify-content-center" *ngIf="showOtpBox">
+                  <span class="input-text ">Enter OTP Here</span>
+                  <input  style="background-color: #fff7f2;" #ngOtpInput (onInputChange)="onOtpChange($event)" class="checkout-form form-control" type="number " placeholder="Enter OTP " #otp/>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="buttonImg text-center mb-3" (click)="getOTP()" *ngIf="showotpbox">
+                    <button   class="btn-text  login-btn">Send OTP</button>
+                </div>
+                </div>
+                <div class="col-12">
+                  <div class="buttonImg text-center mb-3"   (click)="handleClick()" *ngIf="showlogin">
+                    <button class="btn-text login-btn">Login</button>
+                </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div id="sign-in-button"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          </div>
+        </form> -->
+        <!-- <form [formGroup]="otpForm" class="otp-form w-100">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <div class="sg-form mb-3 d-flex flex-column justify-content-center">
+                  <span class="input-text text-left">Mobile No</span>
+                  <input style="background-color: #fff7f2;" formControlName="mobileNumber" value="mobileNumber" class="checkout-form form-control" type="number " required maxlength="13" minlength="10" placeholder="Mobile Number " />
+              </div>
+
+              <div class="sg-form mb-3 d-flex flex-column justify-content-center" *ngIf="showOtpBox">
+                  <span class="input-text ">Enter OTP Here</span>
+                  <input  style="background-color: #fff7f2;" formControlName="mobileOtp" value="mobileOtp" class="checkout-form form-control" type="number " placeholder="Enter OTP " #otp/>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="buttonImg text-center mb-3" (click)="sendOTP()" *ngIf="showotpbox">
+                    <button   class="btn-text  login-btn">Send OTP</button>
+                </div>
+                </div>
+                <div class="col-12">
+                  <div class="buttonImg text-center mb-3"   (click)="verifyOTP() " *ngIf="showlogin">
+                    <button class="btn-text login-btn">Login</button>
+                </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div id="sign-in-button"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          </div>
+        </form> -->
+
+          <!-- <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <div class="sg-form mb-3 d-flex flex-column justify-content-center">
+                  <span class="input-text text-left">Mobile No</span>
+                  <input style="background-color: #fff7f2;" [(ngModel)]="phoneNumber"   class="checkout-form form-control" type="number " required maxlength="13" minlength="10" placeholder="Mobile Number " />
+              </div>
+
+              <div class="sg-form mb-3 d-flex flex-column justify-content-center" *ngIf="showOtpBox">
+                  <span class="input-text ">Enter OTP Here</span>
+                  <input (onInputChange)="onOtpChange($event)" style="background-color:  #fff7f2;"   class="checkout-form form-control" type="number " placeholder="Enter OTP " #otp/>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="buttonImg text-center mb-3"  (click)="getOTP()" *ngIf="showotpbox">
+                    <button   class="btn-text  login-btn">Send OTP</button>
+                </div>
+                </div>
+                <div class="col-12">
+                  <div class="buttonImg text-center mb-3"  (click)="handleClick()" *ngIf="showlogin">
+                    <button  class="btn-text login-btn">Login</button>
+                </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div id="sign-in-button"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          </div> -->
+          <div class="container">
+          <div class="row d-flex flex-column align-items-center justify-content-center">
+            <form class="col-md-12">
+
+                <span class="input-text text-left" *ngIf="showotpbox">Mobile No</span>
+                <div class="form-input sg-form mb-3 d-flex flex-column justify-content-center"  *ngIf="showotpbox">
+
+                  <input style="background-color: #fff7f2;" type="text" name="phoneNumber" placeholder="Phone Number" class="form-control"
+                    placeholder="Enter Phone Number" [(ngModel)]="phoneNumber" maxlength="10" required>
+                </div>
+                <div class="buttonImg text-center mb-3"   *ngIf="showotpbox">
+                  <button   class="btn-text login-btn" (click)="getOTP()" id="loginbtn" [disabled]="phoneNumber.length<10">Send OTP</button>
+              </div>
+                <div id="sign-in-button"></div>
+
+            </form>
+          </div>
+          <span class="input-text text-left"  *ngIf="showloginBox">OTP</span>
+          <div class="row" *ngIf="showloginBox">
+            <div class="col-12 text-center">
+              <ng-otp-input    #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config"></ng-otp-input>
+            </div>
+          </div>
+
+
+          <div class="row mt-4" *ngIf="showloginBox">
+
+            <div class="col-12 text-center">
+              <button  class="btn-text login-btn  text-center" (click)="handleClick()">Verify OTP</button>
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+
+          <!-- <form [formGroup]="otpForm" class="otp-form w-100">
+            <div class="container">
+              <div class="row">
+                <div class="col-12">
+                  <div class="sg-form mb-3 d-flex flex-column justify-content-center">
+                    <span class="input-text text-left">Mobile No</span>
+                    <input style="background-color: #fff7f2;" [(ngModel)]="phoneNumber"  min="10" max="15" class="checkout-form form-control" type="number "   maxlength="13" minlength="10" placeholder="Mobile Number " />
+                </div>
+
+                <div class="sg-form mb-3 d-flex flex-column justify-content-center" *ngIf="showlogin">
+                    <span class="input-text ">Enter OTP Here</span>
+                    <input  style="background-color: #fff7f2;" #ngOtpInput (onInputChange)="onOtpChange($event)" class="checkout-form form-control" type="number " placeholder="Enter OTP " />
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="buttonImg text-center mb-3"  (click)="getOTP()" *ngIf="showotpbox">
+                      <button   class="btn-text login-btn" >Send OTP</button>
+                  </div>
+                  </div>
+
+
+                  <div class="col-12">
+                    <div class="buttonImg text-center mb-3"   *ngIf="showlogin">
+                      <button class="btn-text login-btn"  (click)="handleClick()">Login</button>
+                  </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+            </div>
+            </form> -->
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+h5.card-title.imaginative-play {
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  margin-top: 0%;
+  color: black;
+}
+@media only screen and (max-width: 480px){
+  .product-row-listing{
+    margin: 0 !important;
+  }
+
+}
+@media only screen and (max-width: 600px) {
+
+  .mobile-view-tagname{
+    margin-bottom: 50px !important;
+    /* background-color: red; */
+
+  }
+
+ }
+

@@ -1,0 +1,383 @@
+<div class="homepage checkout mt-5"  >
+
+
+
+    <div class="mobile-nav shadows detail-nav d-none" *ngIf="!emptyCart" >
+        <ul class="detail-page-ul">
+            <li>
+                <button class="chronoEButton animate-btn big-button" (click)="submitOrder()">Submit Order</button>
+            </li>
+        </ul>
+    </div>
+    <section class="borderRadius shadows mt-3 py-5">
+        <h2 class="heading-h2 text-center">
+            <span class="dot"></span>
+            <span class="font-weight-bold">Checkout</span>
+            <span class="dot"></span>
+        </h2>
+
+        <div class="row" *ngIf="!emptyCart">
+            <div class="col-md-8 col-lg-8 col-xl-8 col-12">
+                <form>
+                    <div class="changed   my-5 row d-flex justify-content-center align-items-center">
+                      <div class="col-6 text-center">
+                        <span>
+                          <h2 class="mobile-size" style="white-space: nowrap;">Shipping Address
+                                </h2>
+                        </span>
+
+                      </div>
+                      <div class="col-6 text-center">
+                        <!-- <button class="chronoEButton active small-button" [routerLink]="['/address']">
+                          <i class="fa fa-plus" aria-hidden="true"></i>Add Address</button> -->
+
+                          <button class="chronoEButton active small-button"   data-toggle="modal" data-target="#exampleModal">
+                            <i class="fa fa-plus" aria-hidden="true"></i>Add Address</button>
+
+                      </div>
+
+
+                    </div>
+                    <div class="container mt-5 mb-5 mobi-space address-card">
+                        <div class="row ">
+                            <div class="mobile-address col-md-4 col-lg-4 col-xl-4 col-12 py-xl-2 py-xl-2 p-0 address-card-col" *ngFor="let address of addressDetails">
+                                <div class="selection-wrapper">
+                                    <label for="selected-item-{{address.customer_address_id}}" class="selected-label shadows">
+                                            <input type="radio" [checked]="address.customer_address_id == choosedAddress" name="selected-item" id="selected-item-{{address.customer_address_id}}" (click)="addressUpdated(address.customer_address_id, address.billing_name, address.billing_mobile)">
+                                            <!-- <span *ngIf="address.customer_address_id == choosedAddress">{{updateNameAndMobile(address.billing_name, address.billing_mobile)}}</span> -->
+                                            <span class="icon"></span>
+                                            <div class="card selected-content">
+                                                <div class="card-body">
+                                                    <h4>{{address.billing_name}} - ({{address.address_type}})</h4>
+                                                    <div>
+                                                        <h6>
+                                                            {{address.address_details}}, {{address.address_locality_town}}, {{address.address_city_district}}, {{address.address_state}} - {{address.address_pincode}}
+                                                        </h6>
+                                                        <h5>Mobile : {{address.billing_mobile}}</h5>
+                                                        <p>{{updateNameAndMobile(address.billing_name, address.billing_mobile)}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="changed pl-5 pr-5 my-2">
+                        <u><h2 class="text-center">Products In Cart</h2></u>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="py-3 ml-3 mr-3 cart-list mb-3 checkout-product-cart" *ngFor="let product of cartDetails.details">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-2 m-auto col-12  mobile-checkout-center">
+                                          <div class="row mobileremove">
+                                            <div class="col-12">
+                                              <img src="assets/images/mobremove1.png" alt=""  (click)="removeFromCart(product.cart_id)" class="mobileremove">
+
+                                            </div>
+                                          </div>
+
+                                            <img class="image-border" [src]="product.products.one_image.product_image" width="100" />
+
+                                        </div>
+                                        <div class="col-md-7 col-12 mobile-checkout-center lids">
+                                            <h2 class="checkout-product-name fs-5">{{product.products.product_name}}</h2>
+                                            <!-- <p class="solid">{{product.products.sub_category.sub_category_name}}</p> -->
+                                            <!-- <p class="byprod"> sold by chrono</p> -->
+                                            <div class="product-meta">
+                                                <div class="row">
+                                                    <div class="col-md-6 col-6 select">
+                                                      <div *ngIf="product.size.size_name != '0 gm'">
+                                                        <label>WEIGHT</label>
+                                                        <select class="form-select" disabled (change)="updateSizeCart($event.target,product.cart_id)">
+                                                        <option [value]="size.id" [selected]="product.product_size_id == size.id" *ngFor="let size of product.products.product_sizes">{{size.itemName == '0 gm' ? 'NIL' : size.itemName}}</option>
+                                                         </select>
+                                                      </div>
+                                                    </div>
+
+                                                    <div class="col-lg-3 col-md-3 col-xl-3 col-6 select product-cart-qty">
+                                                      <span><button class="minus" (click)="minus(product.product_quantity, product.cart_id)"><i class="fa fa-minus" aria-hidden="true"></i></button></span>
+                                                      <span>{{product.product_quantity}}</span>
+                                                      <span><button class="plus" (click)="plus(product.product_quantity, product.cart_id)"><i class="fa fa-plus" aria-hidden="true"></i></button></span>
+                                                        <!-- <label>QTY</label>
+                                                        <select class="form-select" disabled (change)="updateQuantityCart($event.target, product.cart_id)">
+                                                        <option [value]="1" [selected]="product.product_quantity == 1" >1</option>
+                                                        <option [value]="2" [selected]="product.product_quantity == 2" >2</option>
+                                                        <option [value]="3" [selected]="product.product_quantity == 3" >3</option>
+                                                        <option [value]="4" [selected]="product.product_quantity == 4" >4</option>
+                                                        <option [value]="5" [selected]="product.product_quantity == 5" >5</option>
+                                                    </select>-->
+                                                    </div>
+                                                    <div class="col">
+                                                        <p class="remve mt-xl-2 mt-lg-2 mt-md-2 mt-5 d-flex justify-content-center desktop-remove">
+                                                            <button class="chronoEButton active" (click)="removeFromCart(product.cart_id)"> <i class="fa fa-trash" aria-hidden="true"></i>Remove</button>
+                                                        </p>
+                                                    </div>
+                                                    <!-- <div class="col-md-6">
+                                                    <p class="wishList">
+                                                        <button class="chronoEButton active" (click)="removeFromCart(product.cart_id)"> <i class="fa fa-heart" aria-hidden="true"></i>Add To Wishlist</button>
+                                                    </p>
+                                                </div> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 my-4 my-xl-0 my-lg-0 my-md-0 col-12 litsa d-flex flex-xl-column flex-lg-column flex-row align-items-end justify-content-xl-center justify-content-md-center justify-content-lg-center justify-content-around order-xl-3 order-md-3 order-lg-3 order-1">
+                                            <div class="price-v">₹ {{product.product_discount_price}}</div>
+                                            <div class="strike" *ngIf="product.offer != 0 && product.product_price != product.product_discount_price">₹ {{product.product_price}}</div>
+                                            <div class="percentage" *ngIf="product.offer != 0">{{product.offer}}% OFF</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- <div class="text-center hide-btn">
+                            <button class="btn btn-red add-more" [routerLink]="['/user/wishlist']"><i class="fa fa-heart"></i> ADD MORE FROM WISHLIST</button>
+                        </div> -->
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4  col-12 p-xl-0 p-md-0 p-lg-0 p-5">
+                <div class="content-container" id="theFixed">
+                    <div class="text-contain">
+                        <h2>Payment Details</h2>
+                    </div>
+                    <div class="card">
+                        <div class="card-body mobile-card-bg">
+                            <p class="price-details text-center">Weightage Of Bag ({{cartDetails.details.length}} items)</p>
+                            <div class="">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr *ngFor="let product of cartDetails.details">
+                                            <td>{{product.products.product_name}} <br>({{product.product_discount_price}} x {{product.product_quantity}})</td>
+                                            <td class="text-ali"><i class="fa fa-inr"></i> {{product.product_total}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <table class="table table-borderless mobile-promo">
+                                  <thead>
+                                      <tr *ngIf="!promoCodeUpdated">
+                                          <th class="text-ali d-flex">
+                                              <input class="promo-text-box" [(ngModel)]="promoCode" placeholder="Enter promo Code" type="text" (keyup.enter)="updatePromoCode()" /><button class="promo-btn pointer"><i (click)="updatePromoCode()" class="fa fa-check" aria-hidden="true"></i>
+                                          </button>
+                                          </th>
+                                      </tr>
+                                      <tr *ngIf="promoCodeUpdated">
+                                          <th>{{promoCode}} ({{promoPercentage}}% OFF)</th>
+                                          <th class="text-ali d-flex">
+                                              - <i class="fa fa-inr"></i>{{promoValue}} <button class="promo-btn pointer"><i (click)="removePromoCode()" class="fa fa-times" aria-hidden="true"></i>
+                                          </button>
+                                          </th>
+                                      </tr>
+                                      <tr class="d-flex">
+                                          <th class="text-left d-flex flex-column" style="font-size: 12px;" >Total Amount<small class="muted" style="font-size: 10px;">(Inclusive of Taxes & Delivery Fee)</small></th>
+                                          <th class="text-left"><i class="fa fa-inr"></i> {{totalValue}}</th>
+                                      </tr>
+
+                                      <tr>
+                                        <th class="text-ali d-flex">
+                                            <input class="promo-text-box" [(ngModel)]="chechoutEmail" placeholder="Enter Email" type="email" >
+                                        </th>
+                                    </tr>
+                                      <tr class="d-none justify-content-center adjustment">
+                                          <!-- <th class="text-ali">
+                                              <label class="form-check-label">
+                                              <input type="radio" [checked]="true" class="form-check-input" name="optradio" (click)="paymentTypeUpdate('cash')">
+                                              Cash On Delivery
+                                            </label>
+                                          </th> -->
+                                          <th class="text-ali">
+                                              <label class="form-check-label">
+                                              <input type="radio" class="form-check-input" name="optradio" (click)="paymentTypeUpdate('online')">
+                                              Online Payment
+                                            </label>
+                                          </th>
+                                      </tr>
+                                  </thead>
+                              </table>
+
+
+
+
+
+
+                                <table class="table table-borderless desktop-promo">
+                                    <thead>
+
+                                        <tr *ngIf="!promoCodeUpdated">
+                                            <th>Promo Code</th>
+                                            <th class="text-ali d-flex">
+                                                <input class="promo-text-box" [(ngModel)]="promoCode" placeholder="Enter Code" type="text" (keyup.enter)="updatePromoCode()" /><button class="promo-btn pointer"><i (click)="updatePromoCode()" class="fa fa-check" aria-hidden="true"></i>
+                                            </button>
+                                            </th>
+                                        </tr>
+                                        <tr *ngIf="promoCodeUpdated">
+                                            <th>{{promoCode}} ({{promoPercentage}}% OFF)</th>
+                                            <th class="text-ali d-flex">
+                                                - <i class="fa fa-inr"></i>{{promoValue}} <button class="promo-btn pointer"><i (click)="removePromoCode()" class="fa fa-times" aria-hidden="true"></i>
+                                            </button>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-left" style="display: flex; flex-direction: column;width: 8em;">Total Amount<small class="muted" style=" white-space: nowrap;">(Inclusive of Taxes & Delivery Fee)</small></th>
+                                            <th class="text-ali"><i class="fa fa-inr"></i> {{totalValue}}</th>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Email</th>
+                                            <th class="text-ali d-flex">
+                                                <input class="promo-text-box" [(ngModel)]="chechoutEmail" placeholder="Enter Email" type="email" >
+                                            </th>
+                                        </tr>
+                                        <tr class="adjustment d-none">
+
+                                            <!-- <th class="text-ali">
+                                                <label class="form-check-label">
+                                                <input type="radio" [checked]="true" class="form-check-input" name="optradio" (click)="paymentTypeUpdate('cash')">
+                                                Cash On Delivery
+                                              </label>
+                                            </th> -->
+                                            <th class="text-ali">
+                                              <label class="form-check-label">
+                                                Payment Mode
+                                            </label>
+                                          </th>
+                                            <th class= "text-ali">
+                                                <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="optradio" (click)="paymentTypeUpdate('online')">
+                                                Online Payment
+                                              </label>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="text-center btn-before checkout-b hide-btn mt-4">
+                        <button class="chronoEButton active" (click)="submitOrder()"> Submit Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive center-btn d-flex justify-content-center my-5 p-5" *ngIf="emptyCart">
+            <img src="" />
+            <button type="button" class="add-to-cart-btn" [routerLink]="['/']">Continue Shopping</button>
+        </div>
+    </section>
+</div>
+
+<div class="modal fade prof mt-4" id="exampleModal"  style="  z-index: 10000000;" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"  >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">{{popUpHeading}} Address</h5>
+        <button type="button" id="close-add-address" class="close shadows" data-dismiss="modal" aria-label="Close" (click)="closePopUp()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form [formGroup]="addressForm">
+              <div class="form-layer">
+                  <div class="form-set shadows">
+                      <p style="color: #555;">Personal Details</p>
+                      <div class="row">
+                          <div class="col-md-12">
+                              <div class="form-group">
+                                  <input type="text" class="form-control" placeholder="Billing Name*" formControlName="billingName">
+                              </div>
+                          </div>
+                          <div class="col-md-12">
+                              <div class="form-group">
+                                  <input type="text" class="form-control" placeholder="Billing Mobile*" formControlName="billingMobile"  maxlength="10" >
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-set">
+                      <p style="color: #555;">Address</p>
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <input type="text" class="form-control" placeholder="Pincode*" formControlName="pincode" (change)="getPincodeDetails($event)">
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <input type="text" class="form-control" placeholder="State*" formControlName="state">
+                              </div>
+                          </div>
+                          <div class="col-md-12">
+                              <div class="form-group">
+                                  <textarea colspan="50" placeholder="Address (House No, Building, Street, Area)*" class="form-control" formControlName="fullAddress"></textarea>
+                              </div>
+                          </div>
+                          <div class="col-md-12">
+                              <div class="form-group">
+                                  <input type="text" class="form-control" placeholder="Locality / Town*" formControlName="locality">
+                              </div>
+                          </div>
+                          <div class="col-md-12">
+                              <div class="form-group">
+                                  <input type="text" class="form-control" placeholder="City/District*" formControlName="city">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-set shadows">
+                      <p style="color: #555;">Type Of Address</p>
+                      <div class="row m-b-20 mob-flz">
+                          <div class="col-md-3">
+                              <button class="chronoEButton" [ngClass]="{'active' : addressType === 'Home'}" (click)="updateAddressType('Home')">Home</button>
+                          </div>
+                          <div class="col-md-3">
+                              <button class="chronoEButton" [ngClass]="{'active' : addressType === 'Work'}" (click)="updateAddressType('Work')">Work</button>
+                          </div>
+                      </div>
+                      <div class="hr col-md-12 m-b-20"></div>
+                          <div class="col-md-12 d-none">
+                              <div class="custom-checkbox">
+                                  <input name="noti_6" class="checkbox-custom" id="noti_6" value="6" type="checkbox" (click)="updateDefaultAddress()">
+                                  <label class="checkbox-custom-label" for="noti_6">Make this as my default address</label>
+                                </div>
+                          </div>
+                      <!-- <div class="row">
+                          <div class="col-md-3">
+                              <div class="rdio rdio-primary radio-inline">
+                                  <input name="radio" value="1" id="radio1" type="radio" checked="">
+
+                                <label for="radio1">Home</label>
+                              </div>
+                          </div>
+                          <div class="col-md-3">
+                              <div class="rdio rdio-primary radio-inline">
+                                  <input name="radio" value="1" id="radio2" type="radio" checked="">
+                                <label for="radio2">Office</label>
+                              </div>
+                          </div>
+                         <div class="hr col-md-12"></div>
+                          <div class="col-md-12">
+                              <div class="custom-checkbox">
+                                  <input name="noti_6" class="checkbox-custom" id="noti_6" value="6" type="checkbox">
+                                  <label class="checkbox-custom-label" for="noti_6">Make this as my default address</label>
+                                </div>
+                          </div>
+                      </div> -->
+                      <div class="modal-footer">
+                          <button type="button" class="chronoEButton" data-dismiss="modal" (click)="closePopUp()">Cancel</button>
+                          <button type="submit" class="chronoEButton" (click)="createAddress()"  data-dismiss="modal" >Add Address</button>
+                          <button type="submit" class="chronoEButton big-button" (click)="editAddress(addressData.customer_address_id)" *ngIf="popUpHeading === 'Edit'">Update Address</button>
+                        </div>
+                  </div>
+              </div>
+          </form>
+      </div>
+
+    </div>
+  </div>
+</div>

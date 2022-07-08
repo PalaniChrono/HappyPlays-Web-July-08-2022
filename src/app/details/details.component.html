@@ -1,0 +1,326 @@
+<div class="homepage mx-xl-auto my-lg-auto mx-0 my-0 mx-md-0  mb-5"  >
+
+    <div class="container mob-details" style="margin-top: 7%;">
+        <div class="row pt-xl-5 pt-lg-5 pt-md-5 pt-0">
+            <div class="col-xl-8 col-lg-6 col-md-6 col-12 col-sm-12 details-card-section mob-card-padding">
+                <div class="card details-card-1">
+                  <div class="row mob-details-margin">
+                    <div class="col-lg-3 col-xl-3 col-12 details-css-align order-2 order-xl-1 order-lg-1 order-md-1">
+                      <div class="img-c webVisible"  [class.imgvertical]="productImages.length > 3" [class.hidescroll]=" 3 > productImages.length">
+                        <img id="checking" (click)="changeMainImage(slide.product_image)" src="{{slide.product_image}}" *ngFor="let slide of productImages">
+                      </div>
+                    </div>
+                  <div class="col-12 col-lg-9 col-xl-9 col-md-9 d-lg-flex d-md-flex d-xl-flex justify-content-center  order-1 order-xl-2 order-lg-2 order-md-2">
+                    <img class="card-img-top p-3  details-product-image" src="{{mainImage}}" alt="Card image cap">
+
+                  </div>
+
+                  </div>
+
+
+
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-12 col-sm-12 details-text-section pl-lg-5 pl-xl-5 pl-md-5 p-4  d-lg-flex d-md-flex d-xl-flex flex-xl-column flex-md-column flex-lg-column justify-content-center">
+                <div class="row">
+                    <div class="col-12 product-name">
+                        <h3 class="text-uppercase">{{productDetails.product_name}}</h3>
+
+                    </div>
+                </div>
+                <div class="row mt-xl-3 align-items-center ">
+                    <div class="col-6">
+                        <h5 class="prodduct-actual-price"><i class="fa fa-rupee-sign"></i> {{discountPrice}}</h5>
+                    </div>
+                    <div class="col-6">
+                        <h6 class="product-striked-price" *ngIf="productDetails.offer !== 0 && productDetails.product_discount_price != productDetails.product_price">
+                            <i class="fa fa-rupee-sign"></i>{{price}}
+
+                        </h6>
+                    </div>
+
+                </div>
+
+
+                <div class="row d-flex justify-content-start" *ngIf="colors[0].itemName != 'Default'">
+
+                    <div class="col-1  align-items-center product-colors mx-3 my-3 mx-xl-3 mx-md-3 mx-lg-3   my-xl-0 my-md-0 my-lg-0" *ngFor="let color of colors">
+                        <button class="available-color" [class.active-color]="color.id == choosedColor" (click)="colorChoosed(color)" [ngStyle]="{'backgroundColor':color.colorCode}"></button>
+                    </div>
+
+                </div>
+
+                <div class="row mt-xl-4" *ngIf="weight[0].itemName != '0 gm'" >
+                    <div class="col-3 mx-1 p-0" *ngFor="let productweight of weight">
+                        <button class="weight active-button" [class.in-active-button]="productweight.id != choosedSize" (click)="sizeChoosed(productweight)">{{productweight.itemName}}</button>
+                    </div>
+                </div>
+
+
+                <div class="row mt-4 ">
+                    <div class="col-12 ">
+                        <h5 class="category ">SKU:COLORED BOWLS</h5>
+                        <h5 class="category ">Category: {{productCategory.sub_category_name}}</h5>
+                        <div class="row ">
+                            <div class="col-md-12 col-xl-12 col-lg-12 col-12 d-flex align-items-center ">
+                                <div class="tags">
+                                    <!-- <p ><span *ngFor="let tag of productDetails.product_tags">#{{tag.itemName}} &nbsp;</span></p> -->
+                                    <a style="color: #808080b0;font-weight: 700;font-size: 18px;"  [routerLink]="['/product-tags', tag.id, tag.itemName]" routerLinkActive="router-link-active" *ngFor="let tag of productDetails.product_tags">#{{tag.itemName}} &nbsp;</a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-6 product-qty">
+                             <span style="font-size: 18px;">QTY</span> <select name="qty"  class="minus" #prod_qty style="font-size: 18px !important;"  (change)='onOptionsSelected(prod_qty.value)' [(ngModel)]="prodselectQty">
+                                <!-- <option [value]="selectedqty">{{testProdQTY}}</option> -->
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <!-- <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                  <option value="29">29</option>
+                                    <option value="30">30</option> -->
+
+
+                              </select>
+                            </div>
+                            <div class="col-xl-6 col-md-6 col-lg-6 col-6 ">
+                                <div class="add-to-cart text-center">
+                                  <button class="add-to-cart-btn" *ngIf="customerId == null"   data-toggle="modal" data-target="#exampleModalCenter" style=" cursor: pointer;">Add To Cart <img src="assets/images/Icon10.png " class="w-25" alt="cart-icon "></button>
+                                    <button class="add-to-cart-btn" *ngIf="customerId != null"  (click)="addToCart1()">Add To Cart   <img src="assets/images/Icon10.png " class="w-25" alt="cart-icon "></button>
+                                    <!-- <button *ngIf="goToCart " class="add-to-cart-btn " [routerLink]="[ '/user/cart']">Added in Cart   <img src="assets/images/Icon10.png " alt=" "></button> -->
+                                </div>
+
+                            </div>
+                            <div class="col-xl-6 col-md-6 col-lg-6 col-6 mt-xl-0 mt-5" *ngIf="showcart ">
+                                <div class="add-to-cart text-center ">
+                                    <button class="add-to-cart-btn "   [routerLink]="[ '/cart']">View cart &nbsp;&nbsp; <img src="assets/images/Icon10.png " alt=" "></button>
+
+
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-xl-5 mt-lg-5 mt-md-0 mt-0 ">
+            <div class="row product-description-area ">
+                <div class="col-12 text-left ">
+                    <h3 class="description-title"><img src="assets/images/Play.png " alt=" ">&nbsp;&nbsp; Description</h3>
+
+                </div>
+                <!-- <div class="col-7 text-center ">
+                    <h3 class="description-title">Additional Information</h3>
+
+                </div> -->
+            </div>
+            <div class="row mt-5 ">
+                <div class="col-12 description-content text-justify ">
+                    <h6 ><pre style="font-family: poppins;white-space: break-spaces;font-size: 14px;">{{productDetails.product_description}}</pre></h6>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="container mt-5 mb-5 d-none ">
+            <div class="row d-flex align-items-center ">
+                <div class="col-12 d-flex align-items-center justify-content-center ">
+
+                    <h3 class="play-type ">Related Products</h3>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container d-none">
+            <div class="row imaginative-play-cards ">
+                <div class="col-md-3 col-lg-3 col-xl-3 col-6 ">
+                    <div class="card border-0 bg-pink ">
+                        <img class="card-img-top imaginative-play-product-img " src="assets/images/happyplays(1).jpg " alt="Card image cap ">
+                        <div class="card-body ">
+                            <h5 class="card-title imaginative-play ">Colored Bowls</h5>
+                            <div class="row ">
+                                <div class="col-6 text-center ">
+                                    <p class="card-text imaginative-play-product-offer-price "><i class="fa fa-rupee-sign "></i> 50 </p>
+                                </div>
+                                <div class="col-6 text-center ">
+                                    <p class="card-text imaginative-play-product-actual-price "><i class="fa fa-rupee-sign "></i> 65 </p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-3 col-6 mx my ">
+                    <div class="card border-0 bg-pink ">
+                        <img class="card-img-top imaginative-play-product-img " src="assets/images/happyplays(2).jpg " alt="Card image cap ">
+                        <div class="card-body ">
+                            <h5 class="card-title imaginative-play ">Colored Bowls</h5>
+                            <div class="row ">
+                                <div class="col-6 text-center ">
+                                    <p class="card-text imaginative-play-product-offer-price "><i class="fa fa-rupee-sign "></i> 50</p>
+                                </div>
+                                <div class="col-6 text-center ">
+                                    <p class="card-text imaginative-play-product-actual-price "><i class="fa fa-rupee-sign "></i> 75</p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-3 col-6 ">
+                    <div class="card border-0 bg-pink ">
+                        <img class="card-img-top imaginative-play-product-img " src="assets/images/happyplays(3).jpg " alt="Card image cap ">
+                        <div class="card-body ">
+                            <h5 class="card-title imaginative-play ">Colored Bowls</h5>
+                            <div class="row ">
+                                <div class="col-6 text-center ">
+                                    <p class="card-text imaginative-play-product-offer-price "><i class="fa fa-rupee-sign "></i> 50</p>
+                                </div>
+                                <div class="col-6 text-center ">
+                                    <p class="card-text imaginative-play-product-actual-price "><i class="fa fa-rupee-sign "></i> 60 </p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-3 col-6 ">
+                    <div class="card border-0 bg-pink ">
+                        <img class="card-img-top imaginative-play-product-img " src="assets/images/happyplays(4).jpg " alt="Card image cap ">
+                        <div class="card-body ">
+                            <h5 class="card-title imaginative-play ">Colored Bowls</h5>
+                            <div class="row ">
+                                <div class="col-6 text-center ">
+                                    <p class="card-text imaginative-play-product-offer-price "><i class="fa fa-rupee-sign "></i> 50</p>
+                                </div>
+                                <div class="col-6 text-center ">
+                                    <p class="card-text imaginative-play-product-actual-price "><i class="fa fa-rupee-sign "></i> 75 </p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal " [class.d-none]="!showmodal " [class.d-block]="showmodal " tabindex="-1 " role="dialog ">
+            <div class="modal-dialog modal-dialog-centered " role="document ">
+                <div class="modal-content " style="background-image: linear-gradient(to right bottom, #ffffff, #f8ede6, #fcf0f7, #fee8ee, #ffe1e1); color: black; font-size: 20px;font-family: 'Poppins', sans-serif; ">
+                    <div class="modal-header ">
+
+
+                    </div>
+                    <div class="modal-body text-center ">
+                        Product Added To Cart Successfully
+                    </div>
+                    <div class="modal-footer ">
+                        <button type="button " class="btn btn-primary " data-dismiss="modal " (click)="closepopup() " style="background-color: #f27360 !important; width: 60px; height: 30px; display: flex; justify-content: center; align-items: center; color:
+                                black;border-radius: 10px; ">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="modal fade  loginmodal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h5 class="modal-title" id="exampleModalLongTitle" style="color: #f27360;">Login With OTP</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #f27360;" >
+              <span aria-hidden="true" #closeBtn>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body d-flex justify-content-center" style="background-color: #fff7f2;border-radius: 9px;">
+            <form [formGroup]="otpForm " class="otp-form w-100">
+              <div class="container">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="sg-form mb-3 d-flex flex-column justify-content-center">
+                      <span class="input-text text-left">Mobile No</span>
+                      <input style="background-color: #fff7f2;" formControlName="mobileNumber" value="mobileNumber" class="checkout-form form-control" type="number " required maxlength="10 " placeholder="Mobile Number " />
+                  </div>
+
+                  <div class="sg-form mb-3 d-flex flex-column justify-content-center" *ngIf="showOtpBox">
+                      <span class="input-text ">Enter OTP Here</span>
+                      <input  style="background-color: #fff7f2;" formControlName="mobileOtp" value="mobileOtp" class="checkout-form form-control" type="number " placeholder="Enter OTP " #otp/>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="buttonImg text-center mb-3" (click)="sendOTP()" *ngIf="showotpbox">
+                        <button class="btn-text  login-btn">Send OTP</button>
+                    </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="buttonImg text-center mb-3" (click)="verifyOTP()" *ngIf="showlogin">
+                        <button class="btn-text login-btn">Login</button>
+                    </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              </div>
+
+
+
+          </form>
+          </div>
+
+        </div>
+      </div>
+    </div>

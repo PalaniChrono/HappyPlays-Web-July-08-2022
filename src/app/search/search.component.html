@@ -1,0 +1,62 @@
+<div class="homepage">
+<div class="closeBtn shadows">
+  <button type="button" class="" [routerLink]="['/']">&times;</button>
+</div>
+<section class="search-component">
+  <div class="form-search-comp">
+      <form>
+          <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Search Keyword" [formControl]="searchField">
+              <div class="input-group-append">
+                <button class="btn" type="button"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+      </form>
+  </div>
+  <div class="mt-5 mb-5 container-fluid product-row-3">
+      <div class="row creative-blog-corner">
+          <div class="col-md-12">
+              <div class="row">
+                  <div class="col-lg-2 col-md-6 pos-rel mb-3 col-12 mb-5  mob-card-padding " *ngFor="let product of productList">
+                      <a [routerLink]="['/product', product.product_slug]" routerLinkActive="router-link-active">
+                        <div class="card creative-blog-card" style="background-color: #e9e9e9;cursor: pointer;">
+
+                          <div class="">
+                      <div class=" ">
+                        <img class="card-img-top p-4 blog-creative-product-image" [src]=product.images[0].product_image loading="lazy">
+                      </div>
+                      <div class="card-body pt-0">
+                      <div class=" " [routerLink]="['/product', product.product_slug]" routerLinkActive="router-link-active">
+                        <h5 class="card-title imaginative-play">{{product.product_name | slice:0:10}}<span *ngIf="product.product_name.length>15">.....</span></h5>
+                        <div class="row">
+                          <div class="col">
+                            <p class="card-text imaginative-play-product-offer-price"><i class="fa fa-rupee-sign"></i>{{product.price[0].discount_price}}</p>
+                          </div>
+                          <div class="col">
+                            <p class="card-text imaginative-play-product-offer-price striked-price" *ngIf="product.price[0].price != product.price[0].discount_price"><i class="fa fa-rupee-sign"></i> {{product.price[0].price}}</p>
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                      </div>
+                    </div>
+                      </div></a>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+  </div>
+
+  <!-- <div class="row" *ngIf="productList.length ===0">
+    <div class="col-12">
+      <h3>Try with Another new Word</h3>
+    </div>
+  </div> -->
+</section>
+
+
+</div>
+

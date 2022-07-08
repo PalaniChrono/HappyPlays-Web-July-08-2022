@@ -1,0 +1,115 @@
+
+.imgvertical::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}.imgvertical::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+.img-c.webVisible img {
+  width: 55% !important;
+  border-radius: 20px;
+  border: 4px solid #f27360;
+
+  margin: 5% auto;
+
+}
+.details-css-align{
+  max-height: 500px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+
+}
+.webVisible{
+  display: flex;
+  flex-direction: column;
+
+}
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #f15942 #e1dddb;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 10px;
+  }
+  select:focus{
+outline: none !important;
+border: none !important;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #e1dddb;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #f15942;
+    border-radius: 10px;
+    border: 3px solid #ffffff;
+  }
+  select option{
+    font-size: 18px !important;
+  }
+  @media only screen and (max-width: 480px) {
+    .webVisible {
+        flex-direction: row;
+        /* justify-content: space-around; */
+        overflow-x: auto;
+        margin: 2%;
+    }
+    .img-c.webVisible img {
+        width: 25% !important;
+        margin: 3%;
+        position: relative;
+        /* left: 43%; */
+    }
+    .for-details-mob {
+        position: relative;
+        top: 0%;
+    }
+    .details-card-1 {
+      margin-top: 15%;
+    }
+    .mob-details{
+      margin: 0 !important;
+    }
+    .mob-details-margin{
+      margin: 0 !important;
+    }
+    .product-name h3 {
+      font-size: 16px;
+      text-align: left;
+      line-height: 1.6;
+      font-weight: 600;
+      margin: 0.2% auto 5% auto;
+  }
+  h5.prodduct-actual-price {
+    font-size: 20px;
+
+}
+.product-qty {
+  width: 43%;
+}
+button.add-to-cart-btn {
+  width: 177px;
+  font-size: 14px;
+}
+.description-content h6 pre{
+  font-size: 13px !important;
+}
+.description-title{
+  font-size: 18px;
+  white-space: nowrap;
+}
+.category,.tags p{
+  font-size: 14px;
+}
+.product-description-area{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+}

@@ -1,0 +1,419 @@
+<div class="homepage">
+<div class="container-fluid home-carousel1  section-1" >
+   <div class="row">
+     <div class="col-12 p-0  ">
+      <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide *ngFor="let banner of bannerList"><img class="first-carousel" src="{{banner.banner_image}}" alt=""></ng-template>
+
+      </owl-carousel-o>
+
+
+     </div>
+   </div>
+ </div>
+
+ <div class="container section-2 mt-5 mb-5">
+   <div class="row">
+     <div class="col-xl-7 col-md-7 col-lg-7 col-12 col-sm-12 card-left">
+       <div class="welcome-quotes">
+         <div class="row">
+           <div class="col-12">
+             <div class="quote-1">
+               <h2>Welcome to</h2>
+             </div>
+             <div class="quote-2">
+              <h1>My HappyPlays !!</h1>
+            </div>
+
+           </div>
+         </div>
+
+       </div>
+       <div class="welcome-content mt-3">
+         <div class="row">
+           <div class="col-12">
+             <h6 class="quotes">
+              We are glad to have you here.
+
+              Our quest for NEW ENGAGING PLAY Ideas, lead to the start of this fun filled sail - myhappyplays.com
+
+              We would be happy to travel along with you, in your play journey.
+
+              Our product range includes themed playsets, wooden toys, playdough, waxes, clay and much more. So your child can fill, pour, create, recreate, represent, organize, learn and have endless hours of play to their hearts desire.
+
+
+             <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+               <div class="endquote">So may the fun begin!!              </div>
+
+
+             </h6>
+
+
+           </div>
+         </div>
+       </div>
+
+     </div>
+     <div class="col-xl-5 col-md-5 col-lg-5 col-12 col-sm-12 card-right">
+       <img src="assets/images/belowbannner.jpeg" style="z-index: 1;width: 100%;" alt="">
+
+
+    </div>
+   </div>
+
+ </div>
+ <div class="container section-3 mt-5 mb-5">
+   <div class="row lookinto-shop-header">
+    <div class="col-md-3 col-lg-3 col-xl-3 col-12 lookinto-star modi">
+
+       <img src="assets/images/Icon8.png" alt="">
+     </div>
+     <div class="col-md-9 col-lg-9 col-xl-9 col-12 lookinto-text">
+
+       <h1>
+         Look into our Shop for...
+       </h1>
+     </div>
+   </div>
+
+ </div>
+
+
+
+<div class="container mt-5 mb-5">
+  <div class="row d-flex align-items-center">
+    <div class="col-xl-6 col-lg-6 col-md-6 col-12 d-flex align-items-center center-mobile">
+   <img  src="assets/images/Icon8.png" alt="" class="lookinto-star">&nbsp;&nbsp;&nbsp;
+   <h3 class="play-type">Wooden Trays</h3>
+
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-12  mob-center">
+      <button class="play-typ-viewmore"  [routerLink]="['/products',submenus[0].sub_category_slug]">View More</button>
+
+   </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row woodern-play-cards">
+    <div class="col-md-3 col-lg-3 col-xl-3 col-6 mx my" *ngFor="let wooden of WoodenTrayList.slice(0,4)">
+      <div class="card border-0 bg-pink" (click)="pagetop()" [routerLink]="['/product', wooden.product_slug]">
+        <img class="card-img-top imaginative-play-product-img" src="{{wooden.first_image[0].product_image}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title imaginative-play">{{wooden.product_name}}</h5>
+          <div class="row">
+            <div class="col">
+              <p class="card-text imaginative-play-product-offer-price"><i class="fa fa-rupee-sign"></i>  {{wooden.price[0].discount_price}} </p>
+            </div>
+            <div class="col">
+              <p class="card-text imaginative-play-product-actual-price" *ngIf="wooden.price[0].price != wooden.price[0].discount_price"><i class="fa fa-rupee-sign"></i>  {{wooden.price[0].price}} </p>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+<div class="container mt-5 mb-5">
+  <div class="row d-flex align-items-center">
+    <div class="col-xl-6 col-lg-6 col-md-6 col-12 d-flex align-items-center">
+   <img  src="assets/images/Icon8.png" alt="" class="lookinto-star">&nbsp;&nbsp;&nbsp;
+   <h3 class="play-type" >Imaginative play</h3>
+
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-12 mob-center">
+      <button class="play-typ-viewmore"   [routerLink]="['/products',submenus[2].sub_category_slug]">View More</button>
+
+   </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row imaginative-play-cards">
+    <div class="col-md-3 col-lg-3 col-xl-3 col-6 mx my" *ngFor="let imaginative of imaginativeList.slice(0,4)">
+      <div class="card border-0 bg-pink" (click)="pagetop()" [routerLink]="['/product', imaginative.product_slug]">
+        <img class="card-img-top imaginative-play-product-img" src="{{imaginative.first_image[0].product_image}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title imaginative-play">{{imaginative.product_name}}</h5>
+          <div class="row">
+            <div class="col-6 text-center">
+              <p class="card-text imaginative-play-product-offer-price"><i class="fa fa-rupee-sign"></i>{{imaginative.price[0].discount_price}}</p>
+            </div>
+            <div class="col-6 text-center">
+              <p class="card-text imaginative-play-product-actual-price" *ngIf="imaginative.price[0].price != imaginative.price[0].discount_price"><i class="fa fa-rupee-sign"></i>  {{imaginative.price[0].price}} </p>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+<div class="container mt-5 mb-5 mobile-adjustment">
+  <div class="row">
+    <div class="col-12 text-center">
+      <img class="quotes-1" src="assets/images/quotes.png" alt="">
+    </div>
+  </div>
+  <div class="row mt-5 mb-3 ">
+    <div class="col-12 text-center">
+      <h1 class="big-text">
+        “In every walk with nature, one receives far more than he seeks.” John Muir
+
+      </h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 text-center">
+      <img class="quotes-2" src="assets/images/quotes.png" alt="">
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="homepage mobile-require" style="background-image: url(assets/images/BG1.png);">
+  <div class="container-fluid home-carousel1  mb-5 section-1" >
+    <div class="row">
+      <div class="col-12 p-0">
+       <owl-carousel-o [options]="customOptions">
+         <ng-template  carouselSlide *ngFor="let bottombanner of bottombannerList"><img style="height: 60vh;-webkit-box-shadow: 0 3px 10px 5px #ABABAB;
+          box-shadow: 0 3px 10px 5px #ABABAB;" src="{{bottombanner.banner_image}}" alt=""></ng-template>
+
+       </owl-carousel-o>
+
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- <div class="container mt-5 mb-5">
+    <div class="row d-flex align-items-center">
+      <div class="col-12 d-flex align-items-center justify-content-center">
+     <img  src="assets/images/Icon8.png" alt="" class="lookinto-star mob-adjustment">&nbsp;&nbsp;&nbsp;
+     <h3 class="play-type text-center">Blog (Creative Corner)</h3>
+      </div>
+    </div>
+    </div> -->
+
+<!-- <div class="container-fluid">
+  <div class="row creative-blog-corner justify-content-center">
+    <div class="col-md-3 col-lg-3 col-xl-3 col-6 mob-card-padding ">
+      <div class="card creative-blog-card h-84 mob-h-100">
+        <img class="card-img-top p-4 h-55 mob-img-height blog-creative-product-image" src="assets/images/happyplays(5).jpg" alt="Card image cap">
+        <div class="card-body pt-0">
+          <h5 class="card-title blog-creative-product-title text-center">August 19, 2019 </h5>
+          <div class="row">
+            <div class="col-12 text-center">
+              <p class="card-text blog-creative-product-text-1">How to teach a child to clean himself</p>
+            </div>
+          </div>
+          <div class="row mt-3 mb-3">
+            <div class="col-12 text-center">
+              <p class="card-text blog-creative-product-text-2">#experimentfree #printablesgo #playneuro #bytes for kids</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-lg-3 col-xl-3 col-6 mob-card-padding  mob-adjustment1">
+      <div class="card creative-blog-card  h-84 mob-h-100">
+        <img class="card-img-top p-4 h-55 mob-img-height blog-creative-product-image" src="assets/images/happyplays(5).jpg" alt="Card image cap">
+        <div class="card-body pt-0">
+          <h5 class="card-title blog-creative-product-title text-center">August 19, 2019 </h5>
+          <div class="row">
+            <div class="col-12 text-center">
+              <p class="card-text blog-creative-product-text-1">How to teach a child to clean himself</p>
+            </div>
+          </div>
+          <div class="row mt-3 mb-3">
+            <div class="col-12 text-center">
+              <p class="card-text blog-creative-product-text-2">#experimentfree #printablesgo #playneuro #bytes for kids</p>
+            </div>
+          </div>
+
+         </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-lg-3 col-xl-3 col-6 mob-card-padding  mob-adjustment1">
+      <div class="card creative-blog-card h-84 mob-h-100">
+        <img class="card-img-top p-4 h-55 mob-img-height blog-creative-product-image" src="assets/images/happyplays(5).jpg" alt="Card image cap">
+        <div class="card-body pt-0">
+          <h5 class="card-title blog-creative-product-title text-center">August 19, 2019 </h5>
+          <div class="row">
+            <div class="col-12 text-center">
+              <p class="card-text blog-creative-product-text-1">How to teach a child to clean himself</p>
+            </div>
+          </div>
+          <div class="row mt-3 mb-3">
+            <div class="col-12 text-center">
+              <p class="card-text blog-creative-product-text-2">#experimentfree #printablesgo #playneuro #bytes for kids</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-lg-3 col-xl-3 col-6 mob-card-padding  mob-adjustment1">
+      <div class="card creative-blog-card h-84 mob-h-100">
+        <img class="card-img-top p-4 h-55 mob-img-height blog-creative-product-image" src="assets/images/happyplays(5).jpg" alt="Card image cap">
+        <div class="card-body pt-0">
+          <h5 class="card-title blog-creative-product-title text-center">August 19, 2019 </h5>
+          <div class="row">
+            <div class="col-12 text-center">
+              <p class="card-text blog-creative-product-text-1">How to teach a child to clean himself</p>
+            </div>
+          </div>
+          <div class="row mt-3 mb-3">
+            <div class="col-12 text-center">
+              <p class="card-text blog-creative-product-text-2">#experimentfree #printablesgo #playneuro #bytes for kids</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col-12 text-center">
+      <button class="blog-creative-viewmore">View More Blogs</button>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- <div class="container mt-5 mb-5">
+  <div class="row d-flex align-items-center">
+    <div class="col-12 d-flex align-items-center justify-content-center">
+   <img  src="assets/images/Icon8.png" alt="" class="lookinto-star">&nbsp;&nbsp;&nbsp;
+   <h3 class="play-type text-center">Art With Nature</h3>
+    </div>
+  </div>
+  </div> -->
+
+  <!-- <div class="container-fluid">
+    <div class="row creative-blog-corner">
+      <div class="col-md-3 col-lg-3 col-xl-3 col-6 mob-card-padding">
+        <div class="card creative-blog-card h-84 mob-h-100" style="background-color: #e9e9e9;">
+          <img class="card-img-top h-55 mob-img-height p-4 blog-creative-product-image" src="assets/images/happyplays(5).jpg" alt="Card image cap">
+          <div class="card-body pt-0">
+            <h5 class="card-title blog-creative-product-title text-center">August 19, 2019 </h5>
+            <div class="row">
+              <div class="col-12 text-center">
+                <p class="card-text blog-creative-product-text-1">How to teach a child to clean himself</p>
+              </div>
+            </div>
+            <div class="row mt-3 mb-3">
+              <div class="col-12 text-center">
+                <p class="card-text blog-creative-product-text-2">#experimentfree #printablesgo #playneuro #bytes for kids</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3 col-xl-3 col-6 mob-card-padding">
+        <div class="card creative-blog-card h-84 mob-h-100" style="background-color: #e9e9e9;">
+          <img class="card-img-top h-55 mob-img-height p-4 blog-creative-product-image" src="assets/images/happyplays(5).jpg" alt="Card image cap">
+          <div class="card-body pt-0">
+            <h5 class="card-title blog-creative-product-title text-center">August 19, 2019 </h5>
+            <div class="row">
+              <div class="col-12 text-center">
+                <p class="card-text blog-creative-product-text-1">How to teach a child to clean himself</p>
+              </div>
+            </div>
+            <div class="row mt-3 mb-3">
+              <div class="col-12 text-center">
+                <p class="card-text blog-creative-product-text-2">#experimentfree #printablesgo #playneuro #bytes for kids</p>
+              </div>
+            </div>
+
+           </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3 col-xl-3 col-6 mob-card-padding">
+        <div class="card creative-blog-card h-84 mob-h-100" style="background-color: #e9e9e9;">
+          <img class="card-img-top h-55 mob-img-height p-4 blog-creative-product-image" src="assets/images/happyplays(5).jpg" alt="Card image cap">
+          <div class="card-body pt-0">
+            <h5 class="card-title blog-creative-product-title text-center">August 19, 2019 </h5>
+            <div class="row">
+              <div class="col-12 text-center">
+                <p class="card-text blog-creative-product-text-1">How to teach a child to clean himself</p>
+              </div>
+            </div>
+            <div class="row mt-3 mb-3">
+              <div class="col-12 text-center">
+                <p class="card-text blog-creative-product-text-2">#experimentfree #printablesgo #playneuro #bytes for kids</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3 col-xl-3 col-6 mob-card-padding">
+        <div class="card creative-blog-card h-84 mob-h-100" style="background-color: #e9e9e9;">
+          <img class="card-img-top  h-55 mob-img-height p-4 blog-creative-product-image" src="assets/images/happyplays(5).jpg" alt="Card image cap">
+          <div class="card-body pt-0">
+            <h5 class="card-title blog-creative-product-title text-center">August 19, 2019 </h5>
+            <div class="row">
+              <div class="col-12 text-center">
+                <p class="card-text blog-creative-product-text-1">How to teach a child to clean himself</p>
+              </div>
+            </div>
+            <div class="row mt-3 mb-3">
+              <div class="col-12 text-center">
+                <p class="card-text blog-creative-product-text-2">#experimentfree #printablesgo #playneuro #bytes for kids</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <button class="blog-creative-viewmore mb-5">View More Blogs</button>
+      </div>
+    </div>
+  </div> -->
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-12 mb-5 text-center">
+      <img src="assets/images/happyplaysinsta.jpeg" class="instahomepage" alt="">
+    </div>
+  </div>
+
+            <div class="row mb-5">
+              <div class="col-12 text-center">
+               <a href="https://instagram.com/myhappyplaysofficial"> <button class="blog-creative-viewmore">View Instagram</button></a>
+              </div>
+            </div>
+
+
+
+
+<style>
+  @media only screen and(max-width:480px){
+  .homepage{
+    overflow: hidden !important;
+  }
+
+
+}
+
+.instahomepage{
+  width:25%;
+}
+</style>
+
+

@@ -1,0 +1,127 @@
+<div class="homepage">
+<!-- New Order list -->
+<section id="loading-container" class="common-all shadows borderRadius mt-5 mb-5" *ngIf="loading">
+  <div class="container">
+      <div class="table-responsive center-btn">
+          <img class="loading-gif-img" src="assets/images/loading.svg"/>
+      </div>
+  </div>
+</section>
+<section class="borderRadius shadows mt-3 py-5" *ngIf="!loading">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-3 mb-3 col-12">
+              <div style="height: 100%;" class="bg-white shadows borderRadius px-3 py-3">
+                  <div class="bor-dash">
+                      <figure>
+                          <img src="assets/images/tracking.svg" alt="">
+                          <figcaption>
+                            <h4>Tracking Details</h4>
+                            <h6>Order Number</h6>
+                            <h2><span class="bold-fon">MHP{{orderDetails.order_id}}</span></h2>
+                          </figcaption>
+                        </figure>
+                      <p *ngIf="orderDetails.order_processed_at ||orderDetails.order_shipped_at || orderDetails.order_delivered_at">Track Here <br>
+                          <a><span class="bold-fon" style="cursor:pointer;"># {{orderDetails.order_tracking_id}}</span></a>
+                      </p>
+                  </div>
+                  <div class="row justify-content-between rws">
+                      <div class="order-tracking" [class.completed]="orderDetails.order_submitted_at">
+                          <span class="is-complete"></span>
+                          <p>Order Submitted<br><span>{{orderDetails.order_submitted_at}}</span></p>
+                      </div>
+                      <div class="order-tracking" [class.completed]="orderDetails.order_processed_at">
+                          <span class="is-complete"></span>
+                          <p>Order Processed<br><span>{{orderDetails.order_processed_at}}</span></p>
+                      </div>
+                      <div class="order-tracking" [class.completed]="orderDetails.order_shipped_at">
+                          <span class="is-complete"></span>
+                          <p>Order Shipped<br><span>{{orderDetails.order_shipped_at}}</span></p>
+                      </div>
+                      <div class="order-tracking" [class.completed]="orderDetails.order_delivered_at">
+                          <span class="is-complete"></span>
+                          <p>Order Delivered<br><span>{{orderDetails.order_delivered_at}}</span></p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-9 col-12">
+              <div style="height: 100%;" class="order-cont bg-white borderRadius shadows py-3 px-3">
+                  <p class="id-Manage">Order <span class="bold-fon">{{orderDetails.order_id}}</span> was placed on <span class="bold-fon">{{orderDetails.order_submitted_at}}</span></p>
+                  <h2>Order details</h2>
+                  <div class="table-responsive">
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                  <th>PRODUCT</th>
+                                  <th>TOTAL</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr *ngFor="let product of orderDetails.ordered_products">
+                                  <td>
+                                      <b><a>{{product.product_details[0].product_name}} - {{product.size.size_name}}</a> × {{product.product_quantity}}</b>
+                                  </td>
+                                  <td><span class="bold-fon"><i class="fa fa-inr"></i>{{product.product_details[0].product_discount_price}}</span> </td>
+                              </tr>
+                              <!-- <tr>
+                                  <td>
+                                      Subtotal:
+                                  </td>
+                                  <td><span class="bold-fon"><i class="fa fa-inr"></i>{{orderDetails.order_sub_total}}</span> </td>
+                              </tr>
+                              <tr>
+                                  <td>
+                                      Delivery Charge:
+                                  </td>
+                                  <td><span class="bold-fon"><i class="fa fa-inr"></i>{{orderDetails.deliver_fee}}</span> </td>
+                              </tr>
+                              <tr>
+                                  <td>
+                                      CGST({{orderDetails.cgst_tax}}%):
+                                  </td>
+                                  <td><span class="bold-fon"><i class="fa fa-inr"></i>{{orderDetails.cgst_value}}</span> </td>
+                              </tr>
+                              <tr>
+                                  <td>
+                                      SGST({{orderDetails.sgst_tax}}%):
+                                  </td>
+                                  <td><span class="bold-fon"><i class="fa fa-inr"></i>{{orderDetails.sgst_value}}</span> </td>
+                              </tr> -->
+                              <tr *ngIf="orderDetails.promo_code">
+                                  <td>
+                                      PromoCode ({{orderDetails.promo_code}}):
+                                  </td>
+                                  <td><span class="bold-fon"> - <i class="fa fa-inr"></i>{{orderDetails.promo_code_value}}</span> </td>
+                              </tr>
+                              <tr>
+                                  <td>
+                                      Inclusive of Taxes & Delivery Fee
+                                  </td>
+                                  <td><span class="bold-fon"><i class="fa fa-inr"></i>{{orderDetails.order_overall_totall}}</span> </td>
+                              </tr>
+                              <tr>
+                                  <td>
+                                      Payment method:
+                                  </td>
+                                  <td>{{orderDetails.payment_mode}}</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+                  <h2>Billing address</h2>
+                  <div class="address-cont" *ngIf="orderDetails.ordered_address">
+                      <span>{{orderDetails.billing_name | titlecase}} ({{orderDetails.ordered_address.address_type}})</span>
+                      <span>{{orderDetails.ordered_address.address_details}}</span>
+                      <span>{{orderDetails.ordered_address.address_locality_town}}, {{orderDetails.ordered_address.address_city_district}} - {{orderDetails.ordered_address.address_pincode}}</span>
+                      <span>{{orderDetails.ordered_address.address_state}}</span>
+                      <span><i class="fa fa-phone"></i> {{orderDetails.billing_mobile_number}}</span>
+                      <!-- <span><i class="fa fa-envelope"></i> suresh@chronoinfotech.com</span> -->
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+<!-- New Order list -->
+</div>
