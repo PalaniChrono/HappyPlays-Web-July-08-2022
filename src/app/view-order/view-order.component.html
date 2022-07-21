@@ -60,7 +60,7 @@
                           <tbody>
                               <tr *ngFor="let product of orderDetails.ordered_products">
                                   <td>
-                                      <b><a>{{product.product_details[0].product_name}} - {{product.size.size_name}}</a> × {{product.product_quantity}}</b>
+                                      <b><a>{{product.product_details[0].product_name}} - {{product.size.size_name}}</a> × {{product.product_quantity}} <span *ngIf="product.color.color_name != 'Default'" class="ordered-prod-color" [ngStyle]="{'backgroundColor':product.color.color_code}"></span><p *ngIf="product.color.color_name == 'Default'" >(Color-less-Product)</p></b>
                                   </td>
                                   <td><span class="bold-fon"><i class="fa fa-inr"></i>{{product.product_details[0].product_discount_price}}</span> </td>
                               </tr>

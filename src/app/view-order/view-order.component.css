@@ -7862,7 +7862,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
   transition: transform .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-transform .15s ease-in-out;
 }
 @media (prefers-reduced-motion:reduce) {
-  .custom-switch .custom-control-label: :after {
+  .custom-switch .custom-control-label :after {
   transition: none;
 }
 }.custom-switch .custom-control-input:checked~.custom-control-label::after {
@@ -8020,7 +8020,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
   appearance: none;
 }
 @media (prefers-reduced-motion:reduce) {
-  .custom-range: :-webkit-slider-thumb {
+  .custom-range :-webkit-slider-thumb {
   transition: none;
 }
 }.custom-range::-webkit-slider-thumb:active {
@@ -8046,7 +8046,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
   appearance: none;
 }
 @media (prefers-reduced-motion:reduce) {
-  .custom-range: :-moz-range-thumb {
+  .custom-range :-moz-range-thumb {
   transition: none;
 }
 }.custom-range::-moz-range-thumb:active {
@@ -8074,7 +8074,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
   appearance: none;
 }
 @media (prefers-reduced-motion:reduce) {
-  .custom-range: :-ms-thumb {
+  .custom-range :-ms-thumb {
   transition: none;
 }
 }.custom-range::-ms-thumb:active {
@@ -8117,7 +8117,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
   transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 @media (prefers-reduced-motion:reduce) {
-  .custom-control-label: :before, .custom-file-label, .custom-select {
+  .custom-control-label :before, .custom-file-label, .custom-select {
   transition: none;
 }
 }.nav {
@@ -12796,4 +12796,14 @@ h2, h3, p {
   transition: background 0.25s linear;
   -webkit-transition: background 0.25s linear;
   z-index: 2;
+}
+.ordered-prod-color{
+  height: 1.5em;
+  width: 1.5em;
+  display: inline-block;
+  position: relative;
+  left: 10px;
+  border-radius: 6px;
+  top: 5px;
+  border: 2px solid black;
 }

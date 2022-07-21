@@ -19,10 +19,10 @@ export class ApiService {
     ) { }
 
 
-    // apiURL = 'http://192.168.0.22:8000/api'
+    apiURL = 'http://192.168.0.22:8001/api'
 
 //    apiURL = 'https://myhappyplaysapi.chronoinfotech.com/api';
-     apiURL = 'http://localhost:8000/api'
+    //  apiURL = 'http://localhost:8001/api'
 
     private getToken() {
       headers = head.set('Authorization', `Bearer ${localStorage.getItem('user_token')}`);

@@ -294,7 +294,8 @@ submitOrder() {
           // this.router.navigate(['/user/order', data.data]);
           this.router.navigate(['view-order/:id']);
       })
-  } else if(this.paymentMode === 'online') {
+  } 
+  else if(this.paymentMode === 'online') {
       this.options.amount = (this.totalValue * 100).toFixed(2);
       this.rzp = new this.winRef.nativeWindow.Razorpay(this.options);
       this.rzp.open();

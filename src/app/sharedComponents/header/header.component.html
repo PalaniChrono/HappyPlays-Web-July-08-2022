@@ -224,7 +224,7 @@
                 <div class="form-input sg-form mb-3 d-flex flex-column justify-content-center"  *ngIf="showotpbox">
 
                   <input style="background-color: #fff7f2;" type="text" name="phoneNumber" placeholder="Phone Number" class="form-control"
-                    placeholder="Enter Phone Number" [(ngModel)]="phoneNumber" maxlength="10" required>
+                    placeholder="Enter Phone Number" [(ngModel)]="phoneNumber" maxlength="10" required autocomplete="off">
                 </div>
                 <div class="buttonImg text-center mb-3"   *ngIf="showotpbox">
                   <button   class="btn-text login-btn" (click)="getOTP()" id="loginbtn" [disabled]="phoneNumber.length<10">Send OTP</button>
